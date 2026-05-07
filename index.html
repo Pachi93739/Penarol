@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+
+<title>Mini Chat ⚽</title>
+
+<style>
+body {
+  font-family: Arial;
+  text-align: center;
+  margin-top: 60px;
+  background-color: #111;
+  color: #ffd700;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+input {
+  padding: 10px;
+  width: 300px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+}
+
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  margin-left: 10px;
+  background-color: #ffd700;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+#chat {
+  margin-top: 30px;
+  width: 420px;
+  max-width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  background: #222;
+  padding: 15px;
+  border-radius: 12px;
+  height: 400px;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.msg {
+  margin: 12px 0;
+}
+
+.user {
+  color: white;
+}
+
+.bot {
+  color: #ffd700;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Mini Chat ⚽</h1>
+
+<input type="text" id="pregunta" placeholder="Escribí tu pregunta...">
+<button onclick="responder()">Enviar</button>
+
+<div id="chat"></div>
+
+<script>
+
+const input = document.getElementById("pregunta");
+
+input.addEventListener("keypress", function(event) {
+  if (event.key === "Enter") {
+    responder();
+  }
+});
+
+function responder() {
+
+  const texto = input.value.toLowerCase();
+  const chat = document.getElementById("chat");
+
+  if (texto.trim() === "") return;
+
+  // Mensaje del usuario
+  chat.innerHTML += `
+    <div class="msg user">
+      <strong>Vos:</strong> ${input.value}
+    </div>
+  `;
+
+  let respuesta = "";
+
+  // HOLA
+  if (texto.includes("hola")) {
+
+    respuesta = "Hola 😄 ¿Qué querés saber?";
+
+  }
+
+  // ESTADIO
+  else if (
+    texto.includes("estadio campeón del siglo") ||
+    texto.includes("campeón del siglo")
+  ) {
+
+    respuesta =
+      "🏟️ ESTADIO CAMPEÓN DEL SIGLO 🏟️<br><br>" +
+      "- La casa de Peñarol 🟡⚫<br>" +
+      "- Ubicado en Montevideo<br>" +
+      "- Inaugurado en 2016<br>" +
+      "- Capacidad para ~40.000 personas<br>" +
+      "- El estadio más moderno de Uruguay<br>" +
+      "- Tiene museo y tienda oficial";
+
+  }
+
+  // JUGADORES HISTÓRICOS
+  else if (
+    texto.includes("jugador histórico") ||
+    texto.includes("jugadores históricos") ||
+    texto.includes("mejor jugador") ||
+    texto.includes("mejores jugadores")
+  ) {
+
+    respuesta =
+      "⭐ JUGADORES HISTÓRICOS DE PEÑAROL ⭐<br><br>" +
+
+      "⚽ Fernando Morena<br>" +
+      "- Máximo goleador histórico del club<br>" +
+      "- Ídolo absoluto carbonero<br>" +
+      "- Ganó múltiples campeonatos<br><br>" +
+
+      "🏆 Diego Aguirre<br>" +
+      "- Autor del gol de la Libertadores 1987<br>" +
+      "- Ídolo como jugador y DT<br>" +
+      "- Muy querido por la hinchada<br><br>" +
+
+      "🎯 Pablo Bengoechea<br>" +
+      "- Histórico número 10<br>" +
+      "- Referente de los años 90<br>" +
+      "- Gran pegada y liderazgo<br><br>" +
+
+      "🔥 Leo Fernández<br>" +
+      "- Figura actual del equipo<br>" +
+      "- Mucho talento y calidad<br>" +
+      "- Muy querido por los hinchas<br><br>" +
+
+      "🧤 Ladislao Mazurkiewicz<br>" +
+      "- Uno de los mejores arqueros de la historia<br>" +
+      "- Leyenda uruguaya<br><br>" +
+
+      "⚡ Alberto Spencer<br>" +
+      "- Leyenda histórica del club<br>" +
+      "- Goleador histórico de Libertadores<br><br>" +
+
+      "Y como siempre… Peñarol es el más grande 😎";
+
+  }
+
+  // MÁS GRANDE
+  else if (
+    texto.includes("más grande") ||
+    texto.includes("mejor club")
+  ) {
+
+    respuesta = "Peñarol es el club más grande del mundo 😎";
+
+  }
+
+  // NACIONAL
+  else if (texto.includes("nacional")) {
+
+    respuesta = "La gallina de Uruguay 🐔";
+
+  }
+
+  // LIBERTADORES
+  else if (texto.includes("libertadores")) {
+
+    respuesta =
+      "🏆 Peñarol tiene 5 Copas Libertadores:<br><br>" +
+      "- 1960<br>" +
+      "- 1961<br>" +
+      "- 1966<br>" +
+      "- 1982<br>" +
+      "- 1987";
+
+  }
+
+  // DESPEDIDA
+  else if (
+    texto.includes("chau") ||
+    texto.includes("adiós")
+  ) {
+
+    respuesta = "Nos vemos 👋";
+
+  }
+
+  // RESPUESTA DEFAULT
+  else {
+
+    respuesta =
+      "No entendí 😅<br><br>" +
+      "Probá preguntarme sobre:<br><br>" +
+      "- jugadores históricos<br>" +
+      "- estadio campeón del siglo<br>" +
+      "- libertadores<br>" +
+      "- mejor club";
+
+  }
+
+  // Mensaje del bot
+  chat.innerHTML += `
+    <div class="msg bot">
+      <strong>Bot:</strong> ${respuesta}
+    </div>
+  `;
+
+  input.value = "";
+
+  // Scroll automático
+  chat.scrollTop = chat.scrollHeight;
+}
+
+</script>
+
+</body>
+</html>
